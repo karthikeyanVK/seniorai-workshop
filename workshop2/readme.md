@@ -137,8 +137,7 @@ Stop the agent from passing off general knowledge as company policy.
 
 In the chat window, ask either:
 
-- `What's standard industry refund policy?`
-- `Per policy, what's P1 SLA?`
+- `What's standard industry refund policy?` `Per policy, what's P1 SLA?`
 
 The agent answers from general knowledge, even though the data isn't in the RAG.
 
