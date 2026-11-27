@@ -19,6 +19,8 @@
 4. [Hybrid retrieval](#-hybrid-retrieval)
 5. [Clear context](#-clear-context)
 6. [Prompt engineering](#-prompt-engineering)
+7. [Clear context](#-clear-context)
+8. [Cohere rerank](#-cohere-rerank)
 
 ---
 
@@ -127,3 +129,84 @@ Retrieve before citing any policy or playbook. If nothing relevant is found, say
 ### 3. Verify
 
 Re-ask the two questions. ✅ Expected: `No playbook guidance found`.
+
+---
+
+## 🧹 Clear Context
+
+In the Claude prompt:
+
+```
+/clear
+```
+
+---
+
+## 🏅 Cohere Rerank
+
+Add a reranking stage after Cosmos DB retrieval and measure the gain.
+
+### 1. Check environment
+
+Confirm `COSMOS_INFERENCE_KEY` and `COSMOS_INFERENCE_ENDPOINT` in `.env` are updated with the correct values for your group.
+
+### 2. Fix it with Claude Code
+
+Paste into Claude Code:
+
+```
+## Implement Cohere Reranking
+
+Integrate **Cohere Rerank** into the existing RAG pipeline. Cosmos DB retrieval is already implemented; add reranking as the next stage.
+
+### Implementation
+1. Retrieve top 20–50 candidate documents from Cosmos DB.
+2. Pass the query and retrieved documents to Cohere Rerank.
+3. Reorder results using relevance scores and return the top 5.
+4. Preserve document IDs, metadata, citations and original scores.
+5. Support enabling/disabling reranking for comparison.
+6. Handle API failures and timeouts gracefully.
+
+### Test Dataset & Execution
+- Generate a dataset of **200 realistic test queries** based on the actual Knowledge Base (KB) documents and SQL data available in the project.
+- Ensure queries and expected results are relevant to the actual data, not generic or fabricated.
+- Use existing connection strings and configurations to access KB and SQL data.
+- Include relevance labels and expected document IDs as ground truth.
+- Provide an executable command such as `npm run test:rerank` to run all 200 queries and generate JSON/CSV evaluation reports.
+
+### Environment Configuration
+Use the existing `.env` configuration. Connect to Cosmos DB using:
+- `COSMOS_INFERENCE_KEY`
+- `COSMOS_INFERENCE_ENDPOINT`
+
+### Evaluation Metrics
+
+| Metric | Measurement |
+|---|---|
+| Precision@5 | Relevant documents in top 5 |
+| MRR | Rank of first relevant result |
+| NDCG@5 | Quality of relevance ordering |
+| Latency | Additional reranking time |
+| Cost | Additional Cohere API cost |
+
+### Deliverables
+- Cohere integration.
+- 200-query evaluation dataset.
+- Automated evaluation script.
+- Before-and-after comparison: vector-only, hybrid and hybrid + reranking.
+- Consolidated metrics report.
+
+**Objective:** Quantify retrieval improvement against additional latency and API cost.
+```
+
+### 3. Run the evaluation
+
+```bash
+npm run test:rerank -- --candidates 10
+```
+
+### 4. Verify
+
+Check the metrics. ✅ They should look like the output below.
+
+![alt text](image.png)
