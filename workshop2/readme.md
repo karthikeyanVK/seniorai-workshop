@@ -1,40 +1,56 @@
-# Workshop 2
+# 🤖 Workshop 2
 
-### Setup you agentic application using a RAG and Sales Database
+> Set up your agentic application using a RAG and Sales Database, and set up the job pipeline that powers data ingestion, which is critical for your
 
-In the claude prompt enter below command to clear the context 
+---
 
-`\clear`
+## 🧹 Clear Context
 
-Navigate to workshop2 folder and sales-intelligence-app and run below command in new terminal
+In the Claude prompt, enter this command to clear the context:
 
-`npm install`
+```
+/clear
+```
 
-Rename .env.example to .env
+---
 
-Copy the content from this url - 
+## 📦 Install
 
-Paste the content to .env file 
+Navigate to the `workshop2` folder, then `sales-intelligence-app`, and run in a new terminal:
 
-Make sure you enter the `AUDIENCE_NAME` with your name + YOURNUMBERASSIGNED to you eg: karthik3
+```bash
+npm install
+```
 
-Update the COSMOS_ENDPOINT with `https://salesintelligence-aiworkshop<YOURNUMBERASSIGNED>.documents.azure.com:443/`
+---
 
+## 🔑 Configure Environment
 
-Once the app i created, run it - use the below command in a new command termial in vscode
+1. Rename `.env.example` to `.env`.
+2. Copy the content from this URL -
+3. Paste the content into the `.env` file.
+4. Set `AUDIENCE_NAME` to your name + the number assigned to you, e.g. `karthik3`.
+5. Update `COSMOS_ENDPOINT` with:
 
-`npm run dev`
+   ```
+   https://salesintelligence-aiworkshop<YOURNUMBERASSIGNED>.documents.azure.com:443/
+   ```
 
-Navigate to the app in browser
+---
 
-`https:\\localhost:3000`
+## ▶️ Run
 
+Once the app is created, run it in a new command terminal in VS Code:
 
+```bash
+npm run dev
+```
 
+Navigate to the app in browser: <http://localhost:3000>
 
+---
 
-
-
+## 📋 Overview
 
 | Field | Details |
 |-------|---------|

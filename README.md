@@ -1,26 +1,28 @@
-# Become a Senior AI Engineer
+# 🚀 Become a Senior AI Engineer
 
-### Go from calling an LLM to owning the production AI stack.
+> Go from calling an LLM to owning the production AI stack.
+
+Check all your prerequisites, then head to **Workshop 1**.
 
 ---
 
-## Prerequisites
+## ✅ Prerequisites
 
 | Tool | Verify | Expected |
 |------|--------|----------|
 | **Node.js & npm** | `node -v` and `npm -v` | Version number printed |
 | **Git** | `git --version` | Version number printed |
 
-> "command not found" / "not recognized" = not installed. Install first.
+> **Note:** "command not found" / "not recognized" means not installed. Install first.
 
 ---
 
-## Setup
+## ⚙️ Setup
 
 **1. Clone repo**
 
 ```bash
-git clone <this repo url>
+git clone https://github.com/karthikeyanVK/seniorai-workshop.git
 ```
 
 **2. Enter folder**
@@ -43,14 +45,13 @@ claude --permission-mode auto
 
 ---
 
-## Workshops
+## 📚 Workshops
 
-Start with workshop 1: data setup.
+Start with Workshop 1: Job Pipeline setup.
 
 | # | Workshop | Topic | Status |
 |---|----------|-------|--------|
-| 1 | [Data Setup](workshop1/readme.md) | TBD | 📝 Draft |
+| 1 | [Job Pipeline Setup and Run](workshop1/README.md) | TBD | 📝 Draft |
 | 2 | [Workshop 2](workshop2/readme.md) | TBD | 🗓️ Planned |
-| 3 | [Workshop 3](workshop3/readme.md) | TBD | 🗓️ Planned |
-| 4 | [Workshop 4](workshop4/readme.md) | TBD | 🗓️ Planned |
-# seniorai-workshop
+| 3 | [Workshop 3](workshop3/README.md) | TBD | 🗓️ Planned |
+| 4 | [Workshop 4](workshop4/README.md) | TBD | 🗓️ Planned |
