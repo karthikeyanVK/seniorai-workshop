@@ -128,9 +128,7 @@ Reuse existing infrastructure and UI. Do not simulate parallel execution or crea
 
 ### 3. Verify
 
-Ask the **same question** again, 
-Each agent should show its task and live status, followed by the orchestrator's synthesis.
-
+Ask the **same question** again:
 
 ```
 We have 5 sales opportunities.
@@ -139,29 +137,31 @@ which deals need attention, and recommend the next actions.
 Run in parallel
 ```
 
-Output should be: 
+Each agent should show its task and live status, followed by the orchestrator's synthesis. Output should look like:
 
-![alt text](image-3.png)
+![Parallel agents output](image-3.png)
 
-# Human-in-the-loop - Add Approval process
+---
+
+# Human-in-the-Loop - Approval Process
 
 ### 1. Reproduce the gap
 
 In the chat window, ask:
 
-`
+```
 Tidewater Medical Group KK is likely to close a $150,000 deal. Recommend a 15% discount and prepare the proposal.
-`
+```
 
 Output will be:
 
-![alt text](image-4.png)
+![No approval output](image-4.png)
 
 ### 2. Fix it with Claude Code
 
 Paste into Claude Code:
 
-`
+````
 Enhance the existing Sales Intelligence Agent with Human-in-the-Loop using LangGraph.
 
 Example: When the agent recommends a customer discount exceeding the configured approval threshold, pause execution using LangGraph interrupt() and request manager approval.
@@ -175,28 +175,17 @@ UI requirements:
 - Maintain workflow state across interruptions using a persistent checkpointer.
 
 Reuse existing agent, UI and infrastructure. Do not simulate approvals or create a separate application.
-`
+````
+
 ### 3. Verify
 
-Ask the **same question** again, 
-Each agent should show its task and live status, should ask for approval or rejected.
+Ask the **same question** again:
 
-`
-Enhance the existing Sales Intelligence Agent with Human-in-the-Loop using LangGraph.
+```
+Tidewater Medical Group KK is likely to close a $150,000 deal. Recommend a 15% discount and prepare the proposal.
+```
 
-Example: When the agent recommends a customer discount exceeding the configured approval threshold, pause execution using LangGraph interrupt() and request manager approval.
+The agent should pause and ask the manager to approve or reject the discount. Output should look like:
 
-UI requirements:
-- Display the proposed discount, deal value and AI justification.
-- Provide Approve and Reject actions with an optional comment.
-- Stream the pending approval status to the existing UI.
-- Persist the approval decision and resume the graph using Command(resume=...).
-- On rejection, return to the agent for revised recommendations.
-- Maintain workflow state across interruptions using a persistent checkpointer.
-
-Reuse existing agent, UI and infrastructure. Do not simulate approvals or create a separate application.
-`
-
-Output will be:
-![alt text](image-5.png)
+![Approval output](image-5.png)
 

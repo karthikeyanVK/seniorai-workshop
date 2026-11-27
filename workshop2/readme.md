@@ -163,12 +163,15 @@ Paste the below prompt under /lib/agent/prompt.ts above *## Style*
 
 Ask the below question.
 
+
+
 ```
 What's standard industry refund policy? and Per policy, what's P1 SLA?
 ```
 
  Expected: `The search did not return any specific information`.
 
+ `Stop the running localhost if you get any error and start again with 'npm run dev'`
 ---
 
 ## Cohere Rerank

@@ -13,6 +13,14 @@
 
 **You will learn:** RAG · Chunking methods · Hybrid Retrieval · System Prompt · Context Engineering · Reranking · Grounding · Hallucination Reduction
 
+## Prerequisites
+
+Install Azure Functions Core Tools (`func`):
+
+```bash
+npm install -g azure-functions-core-tools@4 --unsafe-perm true
+```
+
 ## Steps
 
 1. [Configure credentials](#configure-credentials)
@@ -29,7 +37,7 @@ In `workshop1/sales-intelligence-jobs`:
 1. Rename `local.settings.example.json` → `local.settings.json`.
 2. Open the [workshop credentials doc](https://docs.google.com/document/d/1n8jc7n50C1VxDVNuezUE2nOtSilXtP-j7D-vPMpMs20/edit?usp=sharing) and copy the values for **your group**:
    - `API_KEY`
-   - `AzureWebJobsStorage`
+   - `AZURE_STORAGE_CONNECTION_STRING`
    - `SQL_DB_SALESINTELLIGENCE`
    - `COSMOS_KEY`
 3. Paste them into `local.settings.json`.
