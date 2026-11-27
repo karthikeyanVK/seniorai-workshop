@@ -8,6 +8,7 @@ requireAudience(); // throws at worker indexing => `func start` fails when AUDIE
 // Timer: NCRONTAB from INGEST_SCHEDULE (default every 6 hours).
 app.timer("ingestTimer", {
   schedule: "%INGEST_SCHEDULE%",
+  runOnStartup: true, // fire once on every host start (func start / cold start / deploy), then follow schedule
   handler: async (_t: Timer, ctx: InvocationContext) => {
     const cfg = loadConfig();
     const log = makeLogger(cfg.logLevel, { invocationId: ctx.invocationId, trigger: "timer" });

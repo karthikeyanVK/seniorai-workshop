@@ -56,13 +56,41 @@ In the Claude prompt, enter this command to clear the context:
 
 In the localhost:3000 opened chat window, enter the below question:
 
-`Which customers are likely to leave us because they are unhappy with our product?
+`Which customers are likely to leave us because they are unhappy with our product?`
 
 You will get "There are currently no customers classified as "At Risk" or "Critical," message
 
 Now navigate to terminal which as claude code opened, paste the following prompt and press enter 
 
 ` Implement hybrid retrieval in Cosmos DB by combining vector search (semantic similarity) with keyword search (exact terms). using BM25 + Vector`
+
+After implementation using claude try the same question in the agentic chat window:
+
+` Implement hybrid retrieval in Cosmos DB by combining vector search (semantic similarity) with keyword search (exact terms). using BM25 + Vector`
+
+#### Check the answer
+
+## 🧹 Clear Context
+
+In the Claude prompt, enter this command to clear the context:
+
+```
+/clear
+```
+
+---
+
+## Prompt Engineering - Instructions
+
+In the agentic chat app, try this following text to lead the query even when the data is not in the RAG
+
+"What's standard industry refund policy?" / "Per policy, what's P1 SLA?
+
+You will get out some details. 
+
+Now ask the following to add system prompt run the below promopt in claude code. 
+
+Retrieve before citing any policy or playbook. If nothing relevant is found, say "No playbook guidance found" instead of   using general knowledge as if it were company policy - Add this to system prompt under Tool Rules
 
 ## 📋 Overview
 

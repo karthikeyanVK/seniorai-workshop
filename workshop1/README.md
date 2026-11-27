@@ -39,7 +39,7 @@ npm run ingest:local
 Once the files are copied, run in the same terminal:
 
 ```bash
-npm start
+func start
 ```
 
 ---
