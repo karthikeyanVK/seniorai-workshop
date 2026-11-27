@@ -8,7 +8,7 @@
 
 ## 🔑 Configure Credentials
 
-1. Rename `local.settings.example.json` to `local.settings.json`.
+1. Rename `local.settings.example.json` to `local.settings.json` of workshop1\sales-intelligence-jobs\local.settings.example.json.
 2. Copy the credentials from the [workshop credentials doc](https://docs.google.com/document/d/1n8jc7n50C1VxDVNuezUE2nOtSilXtP-j7D-vPMpMs20/edit?usp=sharing).
 3. Paste the copied credentials into `local.settings.json`.
 4. Set `AUDIENCE_NAME` to your name + group number assigned to you, e.g. `yourname3`.
