@@ -56,9 +56,9 @@ In the Claude prompt, enter this command to clear the context:
 
 In the localhost:3000 opened chat window, enter the below question:
 
-`Show notes for CUST-10482`
+`Which customers are likely to leave us because they are unhappy with our product?
 
-You will get "No Data" message
+You will get "There are currently no customers classified as "At Risk" or "Critical," message
 
 Now navigate to terminal which as claude code opened, paste the following prompt and press enter 
 

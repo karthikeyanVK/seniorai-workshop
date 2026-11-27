@@ -12,7 +12,7 @@
 2. Copy the credentials from the [workshop credentials doc](https://docs.google.com/document/d/1n8jc7n50C1VxDVNuezUE2nOtSilXtP-j7D-vPMpMs20/edit?usp=sharing).
 3. Paste the copied credentials into `local.settings.json`.
 4. Set `AUDIENCE_NAME` to your name + group number assigned to you, e.g. `yourname3`.
-5. Update `COSMOS_ENDPOINT` and  `COSMOS_KEY` from based on your group:
+5. Get the following details `COSMOS_ENDPOINT` and  `COSMOS_KEY`  based on your group from  [workshop credentials doc](https://docs.google.com/document/d/1n8jc7n50C1VxDVNuezUE2nOtSilXtP-j7D-vPMpMs20/edit?usp=sharing).:
 
    ```
    https://salesintelligence-aiworkshop-<YOURNUMBERASSIGNED>.documents.azure.com:443/
