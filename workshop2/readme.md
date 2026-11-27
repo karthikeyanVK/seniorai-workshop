@@ -13,8 +13,8 @@
 
 ## Steps
 
-1. [Install](#install)
-2. [Configure environment](#configure-environment)
+1. [Configure environment](#configure-environment)
+2. [Install](#install)
 3. [Run](#run)
 4. [Hybrid retrieval](#hybrid-retrieval)
 5. [Prompt engineering](#prompt-engineering)
@@ -22,16 +22,6 @@
 7. [Few-shot prompting](#few-shot-prompting)
 
 > Run `/clear` in Claude Code between exercises.
-
----
-
-## Install
-
-In a new terminal, go to `workshop2/sales-intelligence-app` and run:
-
-```bash
-npm install
-```
 
 ---
 
@@ -53,6 +43,16 @@ npm install
 3. Set `AUDIENCE_NAME` to your name + your assigned number, e.g. `yourname3`.
 
 > Use the **same** value as in Workshop 1. Don't change it.
+
+---
+
+## Install
+
+After configuring the environment, open a new terminal, go to `workshop2/sales-intelligence-app` and run:
+
+```bash
+npm install
+```
 
 ---
 
