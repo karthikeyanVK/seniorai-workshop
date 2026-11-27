@@ -11,7 +11,7 @@ export interface Config {
   audience: string;
   openai: { endpoint: string; apiKey: string; apiVersion: string; deployment: string; dimensions: number; batchSize: number };
   cosmos: { connectionString: string; endpoint: string; key: string; database: string; container: string; autoCreate: boolean; vectorIndex: "quantizedFlat" | "diskANN" };
-  blob: { connectionString: string; accountUrl: string; container: string; prefix: string; sourceContainer: string; clientId: string };
+  blob: { connectionString: string; accountUrl: string; container: string; prefix: string; clientId: string };
   chunk: { maxTokens: number; minTokens: number; hardMaxTokens: number; overlapTokens: number };
   concurrency: number;
   maxRetries: number;
@@ -57,7 +57,6 @@ export function loadConfig(): Config {
       accountUrl: str("AZURE_STORAGE_ACCOUNT_URL"),
       container: withAudience("KB_BLOB_CONTAINER", "knowledge-base", audience),
       prefix: str("KB_BLOB_PREFIX"),
-      sourceContainer: str("KB_SOURCE_CONTAINER", "knowledge-base"),
       clientId: str("AZURE_CLIENT_ID"),
     },
     chunk: {

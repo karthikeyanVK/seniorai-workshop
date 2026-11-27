@@ -49,7 +49,7 @@ In `workshop1/sales-intelligence-jobs`:
 
 ## 📥 Upload KB Files to Cosmos DB
 
-Copies the KB files to `SALES-KB-<AUDIENCE_NAME>`:
+Uploads local `knowledge-base/` to blob container `knowledge-base-<AUDIENCE_NAME>` (created if missing):
 
 ```bash
 cd workshop1/sales-intelligence-jobs
