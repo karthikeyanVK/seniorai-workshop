@@ -6,7 +6,7 @@
     "API_KEY": "",
     "API_TYPE": "azure",
     "API_VERSION": "2025-01-01-preview",
-    "COSMOS_ENDPOINT": "https://salesintelligence-aiworkshop.documents.azure.com:443/",
+    "COSMOS_ENDPOINT": "",
     "COSMOS_KEY": "",
     "AUDIENCE_NAME": "karthik",
     "COSMOS_DATABASE": "SALES-KB",

@@ -10,7 +10,7 @@ Check all your prerequisites, then head to **Workshop 1**.
 
 | Tool | Verify | Expected |
 |------|--------|----------|
-| **Node.js & npm** | `node -v` and `npm -v` | Version number printed |
+| **Node.js & npm** | `node -v` and `npm -v` | Version number printed - atleast 20.X |
 | **Git** | `git --version` | Version number printed |
 
 > **Note:** "command not found" / "not recognized" means not installed. Install first.
@@ -37,7 +37,7 @@ cd seniorai-workshop
 code .
 ```
 
-**4. Open terminal** (`` Ctrl + ` `` if not open), then start Claude:
+**4. Open VS Code terminal** (`` Ctrl + ` `` if not open in VS Code), then start Claude:
 
 ```bash
 claude --permission-mode auto
