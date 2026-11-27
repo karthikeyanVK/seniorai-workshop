@@ -1,8 +1,12 @@
+import { readFileSync } from "fs";
+import { join } from "path";
 import { loadConfig } from "../config";
 import { KbSource, blobService } from "../blob";
 
 // npm run ingest:local : seed KB_BLOB_CONTAINER (e.g. knowledge-base-karthik) from KB_SOURCE_CONTAINER (default: knowledge-base).
 async function main() {
+  const { Values } = JSON.parse(readFileSync(join(__dirname, "../../local.settings.json"), "utf8"));
+  for (const [k, v] of Object.entries(Values ?? {})) process.env[k] ??= String(v);
   const cfg = loadConfig();
   const src = new KbSource(cfg, cfg.blob.sourceContainer, "");
   const dst = blobService(cfg).getContainerClient(cfg.blob.container);

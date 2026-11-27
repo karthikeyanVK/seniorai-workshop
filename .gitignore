@@ -2,3 +2,5 @@
 .claude-flow
 .claude-flow/policy/state.json
 .claude-flow/policy/ledger-anchors.json
+.claude-flow/policy/state.json
+.claude-flow/policy/ledger-anchors.json

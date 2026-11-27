@@ -27,13 +27,13 @@ npm install
 ## 🔑 Configure Environment
 
 1. Rename `.env.example` to `.env`.
-2. Copy the content from this URL -
+2. Copy the content from this URL - https://docs.google.com/document/d/1n8jc7n50C1VxDVNuezUE2nOtSilXtP-j7D-vPMpMs20/edit?tab=t.0
 3. Paste the content into the `.env` file.
-4. Set `AUDIENCE_NAME` to your name + the number assigned to you, e.g. `karthik3`.
+4. Set `AUDIENCE_NAME` to your name + the number assigned to you, e.g. `yourname3`.
 5. Update `COSMOS_ENDPOINT` with:
 
    ```
-   https://salesintelligence-aiworkshop<YOURNUMBERASSIGNED>.documents.azure.com:443/
+   https://salesintelligence-aiworkshop-<YOURNUMBERASSIGNED>.documents.azure.com:443/
    ```
 
 ---

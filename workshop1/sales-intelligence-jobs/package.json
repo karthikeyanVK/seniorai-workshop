@@ -10,7 +10,7 @@
     "start": "func start",
     "test": "npm run build && node --test dist/chunker.test.js",
     "settings": "node scripts/gen-local-settings.js",
-    "ingest:local": "npm run build && node --env-file=.env dist/cli/copyKb.js",
+    "ingest:local": "npm run build && node dist/cli/copyKb.js",
     "ingest:run": "npm run build && node --env-file=.env dist/cli/runOnce.js",
     "search": "npm run build && node --env-file=.env dist/cli/search.js"
   },
