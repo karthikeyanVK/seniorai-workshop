@@ -1,0 +1,12 @@
+*.js.map
+*.ts
+.git*
+.vscode
+.env
+.env.example
+.claude-flow
+local.settings.json
+test
+tsconfig.json
+scripts
+src

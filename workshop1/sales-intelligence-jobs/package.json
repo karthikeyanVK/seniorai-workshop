@@ -1,0 +1,29 @@
+{
+  "name": "sales-intelligence-jobs",
+  "version": "1.0.0",
+  "description": "Azure Functions ingestion pipeline: knowledge-base Markdown -> chunks + embeddings -> Cosmos DB vector store",
+  "main": "dist/functions/*.js",
+  "scripts": {
+    "build": "tsc",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
+    "prestart": "npm run clean && npm run build",
+    "start": "func start",
+    "test": "npm run build && node --test dist/chunker.test.js",
+    "settings": "node scripts/gen-local-settings.js",
+    "ingest:local": "npm run build && node --env-file=.env dist/cli/copyKb.js",
+    "ingest:run": "npm run build && node --env-file=.env dist/cli/runOnce.js",
+    "search": "npm run build && node --env-file=.env dist/cli/search.js"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "@azure/cosmos": "^4.2.0",
+    "@azure/functions": "^4.6.0",
+    "@azure/identity": "^4.5.0",
+    "@azure/storage-blob": "^12.26.0",
+    "openai": "^4.77.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0"
+  }
+}
