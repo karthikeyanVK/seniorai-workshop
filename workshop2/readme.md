@@ -62,7 +62,7 @@ You will get "No Data" message
 
 Now navigate to terminal which as claude code opened, paste the following prompt and press enter 
 
-` Implement hybrid retrieval in Cosmos DB by combining vector search (semantic similarity) with keyword search (exact terms).`
+` Implement hybrid retrieval in Cosmos DB by combining vector search (semantic similarity) with keyword search (exact terms). using BM25 + Vector`
 
 ## 📋 Overview
 
