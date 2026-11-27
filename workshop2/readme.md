@@ -34,11 +34,13 @@
    |-----|
    | `API_KEY` |
    | `AzureWebJobsStorage` |
+   | `AZURE_STORAGE_ACCOUNT_URL` |
    | `SQL_DB_SALESINTELLIGENCE` |
    | `COSMOS_ENDPOINT` |
    | `COSMOS_KEY` |
    | `COSMOS_INFERENCE_ENDPOINT` |
    | `COSMOS_INFERENCE_KEY` |
+
 
 3. Set `AUDIENCE_NAME` to your name + your assigned number, e.g. `yourname3`.
 

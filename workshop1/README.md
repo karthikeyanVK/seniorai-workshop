@@ -38,6 +38,7 @@ In `workshop1/sales-intelligence-jobs`:
 2. Open the [workshop credentials doc](https://docs.google.com/document/d/1n8jc7n50C1VxDVNuezUE2nOtSilXtP-j7D-vPMpMs20/edit?usp=sharing) and copy the values for **your group**:
    - `API_KEY`
    - `AZURE_STORAGE_CONNECTION_STRING`
+   - `AzureWebJobsStorage`
    - `SQL_DB_SALESINTELLIGENCE`
    - `COSMOS_KEY`
 3. Paste them into `local.settings.json`.
