@@ -80,4 +80,4 @@ func start
 
 ## Next
 
-Go to [Workshop 2](../workshop2/readme.md).
+Go to [Workshop 2](../workshop2/README.md).

@@ -34,7 +34,7 @@ function Markdown({ text, onCite }: { text: string; onCite?: (id: string) => voi
           </a>
         );
       },
-      strong: ({ children }) => <strong className="font-semibold text-green-600 dark:text-green-400">{children}</strong>,
+      
       table: ({ children }) => (
         <div className="overflow-x-auto">
           <table>{children}</table>

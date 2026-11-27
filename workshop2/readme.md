@@ -139,7 +139,7 @@ Stop the agent from passing off general knowledge as company policy.
 
 In the chat window, ask either:
 
-- `What's standard industry refund policy?` `Per policy, what's P1 SLA?`
+```What's standard industry refund policy?` `Per policy, what's P1 SLA? ```
 
 The agent answers from general knowledge, even though the data isn't in the RAG.
 
@@ -236,7 +236,7 @@ Use the existing `.env` configuration. Connect to Cosmos DB using:
 ### 3. Run the evaluation
 
 ```bash
-npm run test:rerank -- --candidates 10
+$env:RERANK_CANDIDATES=10; npm run test:rerank
 ```
 
 ### 4. Verify
@@ -325,4 +325,4 @@ Output should be below.
 
 ![alt text](image-3.png)
 
-Go to [Workshop 3](../workshop3/readme.md).
+Go to [Workshop 3](../workshop3/README.md).
