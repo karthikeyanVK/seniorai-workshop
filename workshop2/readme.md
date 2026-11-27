@@ -1,8 +1,8 @@
-# 🤖 Workshop 2 — Sales Intelligence Agent
+# Workshop 2 — Sales Intelligence Agent
 
 > Set up an agentic app on a RAG + Sales database, plus the job pipeline that powers data ingestion.
 
-## 📋 Overview
+## Overview
 
 | Field | Details |
 |-------|---------|
@@ -11,21 +11,21 @@
 | Prerequisites | Node.js, npm, VS Code, Claude Code, your assigned number |
 | Status | TBD |
 
-## 🗺️ Steps
+## Steps
 
-1. [Install](#-install)
-2. [Configure environment](#-configure-environment)
-3. [Run](#️-run)
-4. [Hybrid retrieval](#-hybrid-retrieval)
-5. [Prompt engineering](#-prompt-engineering)
-6. [Cohere rerank](#-cohere-rerank)
-7. [Few-shot prompting](#-few-shot-prompting)
+1. [Install](#install)
+2. [Configure environment](#configure-environment)
+3. [Run](#run)
+4. [Hybrid retrieval](#hybrid-retrieval)
+5. [Prompt engineering](#prompt-engineering)
+6. [Cohere rerank](#cohere-rerank)
+7. [Few-shot prompting](#few-shot-prompting)
 
-> 🧹 Run `/clear` in Claude Code between exercises.
+> Run `/clear` in Claude Code between exercises.
 
 ---
 
-## 📦 Install
+## Install
 
 In a new terminal, go to `workshop2/sales-intelligence-app` and run:
 
@@ -35,7 +35,7 @@ npm install
 
 ---
 
-## 🔑 Configure Environment
+## Configure Environment
 
 1. Rename `.env.example` to `.env`.
 2. Copy the values for these keys from the [shared doc](https://docs.google.com/document/d/1Z6GpFdtjK4mnuXADWi8en0MYPlHV5fG0mr_tdt8tNSc/edit?usp=sharing):
@@ -52,11 +52,11 @@ npm install
 
 3. Set `AUDIENCE_NAME` to your name + your assigned number, e.g. `yourname3`.
 
-> ⚠️ Use the **same** value as in Workshop 1. Don't change it.
+> Use the **same** value as in Workshop 1. Don't change it.
 
 ---
 
-## ▶️ Run
+## Run
 
 In a new VS Code terminal:
 
@@ -68,11 +68,11 @@ Open <http://localhost:3000>.
 
 ---
 
-## 🔍 Hybrid Retrieval
+## Hybrid Retrieval
 
 Make the app handle both **keyword** and **semantic** search.
 
-> 💡 **Why this matters:** the knowledge base is searched by vector (semantic) similarity only. Embeddings capture *meaning*, not exact tokens, so look-alike codes such as `OPP-0663` and `OPP-0580` end up almost identical as vectors. A note that mentions `OPP-0663` exists, but vector search can't find it. Keyword search (BM25) matches the exact term.
+> **Why this matters:** the knowledge base is searched by vector (semantic) similarity only. Embeddings capture *meaning*, not exact tokens, so look-alike codes such as `OPP-0663` and `OPP-0580` end up almost identical as vectors. A note that mentions `OPP-0663` exists, but vector search can't find it. Keyword search (BM25) matches the exact term.
 
 ### 1. Reproduce the gap
 
@@ -94,7 +94,7 @@ In the terminal where Claude Code is open, paste:
 Implement hybrid retrieval in Cosmos DB by combining vector search (semantic similarity) with keyword search (exact terms), using BM25 + Vector fused with weighted RRF (vector 3 : keyword 1). Add a full-text policy and full-text index on /text to my existing knowledge-base container. If the query contains an exact identifier such as OPP-0663, return the chunks that contain that exact identifier first.
 ```
 
-> 💡 **Why the two extra rules?**
+> **Why the two extra rules?**
 > - **Weighted RRF (3:1):** with equal weights, common question words like "buyer" and "says" outvote the semantic match, so meaning-based questions get *worse* (see check 2 below).
 > - **Exact identifier first:** with a lone code as the query, RRF still ranks chunks that *don't* contain the code above the one that does, so the keyword gap would remain.
 
@@ -108,7 +108,7 @@ Hybrid search has to keep **both** strengths: keyword matching for exact terms, 
 What does the knowledge base say about OPP-0663?
 ```
 
-✅ Expected: the answer cites *Deal Desk Notes - Dunmore Wireless Group*. A **42%** discount was requested to match Vantara; it needs a CRO exception (above 30%), and the request is still pending with no CRO approval recorded.
+ Expected: the answer cites *Deal Desk Notes - Dunmore Wireless Group*. A **42%** discount was requested to match Vantara; it needs a CRO exception (above 30%), and the request is still pending with no CRO approval recorded.
 
 **Check 2: semantic (nothing broke).** Ask:
 
@@ -116,20 +116,20 @@ What does the knowledge base say about OPP-0663?
 What do we do when a buyer says we are too expensive?
 ```
 
-✅ Expected: the answer cites *Pricing Objection Handling* and advises re-anchoring on total cost of ownership. No document contains the words "too expensive", so only semantic search finds this. It works before the fix and must still work after it.
+ Expected: the answer cites *Pricing Objection Handling* and advises re-anchoring on total cost of ownership. No document contains the words "too expensive", so only semantic search finds this. It works before the fix and must still work after it.
 
 | Question | Keyword only | Semantic only | Hybrid |
 |---|---|---|---|
-| `OPP-0663` | ✅ | ❌ | ✅ |
-| *buyer says we are too expensive* | ❌ | ✅ | ✅ |
+| `OPP-0663` | | | |
+| *buyer says we are too expensive* | | | |
 
 Want another keyword example? Try `What does the knowledge base say about OPP-0499?` (blocker: legal redlines on the DPA liability cap).
 
-> 🧹 Done? Run `/clear` in the Claude prompt.
+> Done? Run `/clear` in the Claude prompt.
 
 ---
 
-## 🎯 Prompt Engineering
+## Prompt Engineering
 
 Stop the agent from passing off general knowledge as company policy.
 
@@ -143,7 +143,7 @@ The agent answers from general knowledge, even though the data isn't in the RAG.
 
 ### 2. To Fix it
 
-Paste the below prompt under /lib/agent/prompt.ts above *## Style* 
+Paste the below prompt under /lib/agent/prompt.ts above *## Style*
 
 ```
 ## Tool Rules
@@ -161,17 +161,17 @@ Paste the below prompt under /lib/agent/prompt.ts above *## Style*
 
 ### 3. Verify
 
-Ask the below question. 
+Ask the below question.
 
 ```
 What's standard industry refund policy? and Per policy, what's P1 SLA?
 ```
 
-✅ Expected: `The search did not return any specific information`.
+ Expected: `The search did not return any specific information`.
 
 ---
 
-## 🏅 Cohere Rerank
+## Cohere Rerank
 
 Add a reranking stage after Cosmos DB retrieval and measure the gain.
 
@@ -236,15 +236,15 @@ npm run test:rerank -- --candidates 10
 
 ### 4. Verify
 
-Check the metrics. ✅ They should look like the output below.
+Check the metrics. They should look like the output below.
 
 ![Rerank metrics output](image.png)
 
-> 🧹 Done? Run `/clear` in the Claude prompt.
+> Done? Run `/clear` in the Claude prompt.
 
 ---
 
-## 🎨 Few-Shot Prompting
+## Few-Shot Prompting
 
 Give the agent examples that show how it should behave. Goal: print numbers in **green**.
 
@@ -311,9 +311,13 @@ Do not duplicate examples or modify unrelated functionality. Run all relevant un
 
 ### 4. Verify
 
-Ask the **same question** again. ✅ Numbers now render in green:
+Ask the **same question** again. Numbers now render in green:
 
 ```
 what was the revenue from Tidewater Medical Group KK
 ```
 Output should be below.
+
+![alt text](image-3.png)
+
+Go to [Workshop 3](../workshop3/readme.md).

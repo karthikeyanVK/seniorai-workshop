@@ -1,4 +1,4 @@
-# 🚀 Become a Senior AI Engineer
+# Become a Senior AI Engineer
 
 > Go from calling an LLM to owning the production AI stack.
 
@@ -6,7 +6,7 @@ Check all your prerequisites, then head to **Workshop 1**.
 
 ---
 
-## ✅ Prerequisites
+## Prerequisites
 
 | Tool | Verify | Expected |
 |------|--------|----------|
@@ -17,7 +17,7 @@ Check all your prerequisites, then head to **Workshop 1**.
 
 ---
 
-## ⚙️ Setup
+## Setup
 
 **1. Clone repo**
 
@@ -45,13 +45,13 @@ claude --permission-mode auto
 
 ---
 
-## 📚 Workshops
+## Workshops
 
 Start with Workshop 1: Job Pipeline setup.
 
 | # | Workshop | Topic | Status |
 |---|----------|-------|--------|
-| 1 | [Job Pipeline Setup and Run](workshop1/README.md) | TBD | 📝 Draft |
-| 2 | [Workshop 2](workshop2/readme.md) | TBD | 🗓️ Planned |
-| 3 | [Workshop 3](workshop3/README.md) | TBD | 🗓️ Planned |
-| 4 | [Workshop 4](workshop4/README.md) | TBD | 🗓️ Planned |
+| 1 | [Job Pipeline Setup and Run](workshop1/README.md) | TBD | Draft |
+| 2 | [Workshop 2](workshop2/readme.md) | TBD | Planned |
+| 3 | [Workshop 3](workshop3/README.md) | TBD | Planned |
+| 4 | [Workshop 4](workshop4/README.md) | TBD | Planned |

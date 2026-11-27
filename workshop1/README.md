@@ -1,8 +1,8 @@
-# 📖 Workshop 1 — RAG & Data Ingestion
+# Workshop 1 — RAG & Data Ingestion
 
 > Get your data ready for your RAG. Sets up the job pipeline that powers data ingestion, which every later workshop depends on.
 
-## 📋 Overview
+## Overview
 
 | Field | Details |
 |-------|---------|
@@ -13,16 +13,16 @@
 
 **You will learn:** RAG · Chunking methods · Hybrid Retrieval · System Prompt · Context Engineering · Reranking · Grounding · Hallucination Reduction
 
-## 🗺️ Steps
+## Steps
 
-1. [Configure credentials](#-configure-credentials)
-2. [Upload KB files](#-upload-kb-files-to-cosmos-db)
-3. [Start the pipeline](#️-start-the-pipeline)
-4. [Next](#️-next)
+1. [Configure credentials](#configure-credentials)
+2. [Upload KB files](#upload-kb-files-to-cosmos-db)
+3. [Start the pipeline](#start-the-pipeline)
+4. [Next](#next)
 
 ---
 
-## 🔑 Configure Credentials
+## Configure Credentials
 
 In `workshop1/sales-intelligence-jobs`:
 
@@ -35,7 +35,7 @@ In `workshop1/sales-intelligence-jobs`:
 3. Paste them into `local.settings.json`.
 4. Set `AUDIENCE_NAME` to your name + group number, e.g. `yourname3`.
 
-   > 💡 Case doesn't matter. The code lowercases it. Max 12 chars, letters/digits/hyphen only.
+   > Case doesn't matter. The code lowercases it. Max 12 chars, letters/digits/hyphen only.
 
 5. Set `COSMOS_ENDPOINT`:
 
@@ -43,11 +43,11 @@ In `workshop1/sales-intelligence-jobs`:
    https://salesintelligence-aiworkshop-<YOURNUMBERASSIGNED>.documents.azure.com:443/
    ```
 
-> ✅ **Check:** `AUDIENCE_NAME` is set and `COSMOS_ENDPOINT` is updated.
+> **Check:** `AUDIENCE_NAME` is set and `COSMOS_ENDPOINT` is updated.
 
 ---
 
-## 📥 Upload KB Files to Cosmos DB
+## Upload KB Files to Cosmos DB
 
 Uploads local `knowledge-base/` to blob container `knowledge-base-<AUDIENCE_NAME>` (created if missing):
 
@@ -59,7 +59,7 @@ npm run ingest:local
 
 ---
 
-## ▶️ Start the Pipeline
+## Start the Pipeline
 
 Once the files are copied, run in the same terminal. This chunks the KB so Cosmos DB has RAG-ready data for better search:
 
@@ -69,6 +69,6 @@ func start
 
 ---
 
-## ➡️ Next
+## Next
 
 Go to [Workshop 2](../workshop2/readme.md).
