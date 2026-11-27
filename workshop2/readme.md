@@ -17,10 +17,11 @@
 2. [Configure environment](#-configure-environment)
 3. [Run](#️-run)
 4. [Hybrid retrieval](#-hybrid-retrieval)
-5. [Clear context](#-clear-context)
-6. [Prompt engineering](#-prompt-engineering)
-7. [Clear context](#-clear-context)
-8. [Cohere rerank](#-cohere-rerank)
+5. [Prompt engineering](#-prompt-engineering)
+6. [Cohere rerank](#-cohere-rerank)
+7. [Few-shot prompting](#-few-shot-prompting)
+
+> 🧹 Run `/clear` in Claude Code between exercises.
 
 ---
 
@@ -93,15 +94,7 @@ Implement hybrid retrieval in Cosmos DB by combining vector search (semantic sim
 
 Ask the **same question** from step 1 again. ✅ You should now get at-risk customers back.
 
----
-
-## 🧹 Clear Context
-
-In the Claude prompt:
-
-```
-/clear
-```
+> 🧹 Done? Run `/clear` in the Claude prompt.
 
 ---
 
@@ -130,15 +123,7 @@ Retrieve before citing any policy or playbook. If nothing relevant is found, say
 
 Re-ask the two questions. ✅ Expected: `No playbook guidance found`.
 
----
-
-## 🧹 Clear Context
-
-In the Claude prompt:
-
-```
-/clear
-```
+> 🧹 Done? Run `/clear` in the Claude prompt.
 
 ---
 
@@ -209,4 +194,81 @@ npm run test:rerank -- --candidates 10
 
 Check the metrics. ✅ They should look like the output below.
 
-![alt text](image.png)
+![Rerank metrics output](image.png)
+
+> 🧹 Done? Run `/clear` in the Claude prompt.
+
+---
+
+## 🎨 Few-Shot Prompting
+
+Give the agent examples that show how it should behave. Goal: print numbers in **green**.
+
+### 1. Reproduce the gap
+
+In the chat window, ask:
+
+```
+what was the revenue from Tidewater Medical Group KK
+```
+
+Current output, numbers not highlighted:
+
+![Current agent output](image-2.png)
+
+### 2. Add examples
+
+1. In VS Code, open `workshop2/sales-intelligence-app/src/lib/agent`.
+
+   ![Agent folder in VS Code](image-1.png)
+
+2. Create a file named `few-shot-examples.md` with this content:
+
+````markdown
+## Example 1
+Input: Total revenue is 150000.
+
+Output:
+Total revenue is
+<span style="color:green">$150,000</span>.
+
+## Example 2
+Input: Profit increased by 25%.
+
+Output:
+Profit increased by
+<span style="color:green">25%</span>.
+
+## Example 3
+Input: Revenue is 250000 and expenses are 75000.
+
+Output:
+Revenue is <span style="color:green">$250,000</span>
+and expenses are <span style="color:green">$75,000</span>.
+````
+
+### 3. Fix it with Claude Code
+
+Paste into Claude Code:
+
+````
+Inspect the existing prompt architecture, including `prompt.ts` and `run.ts`. The 'few-shot-examples.md' file already exists. Identify the final system prompt construction and load the existing Markdown file into it at runtime. Ensure examples are included before sending the prompt to the LLM. Reuse existing architecture and variable names.
+
+Add unit tests to verify:
+- Few-shot file loads correctly.
+- Examples are included in the final system prompt.
+- Missing or empty files are handled gracefully.
+- Existing prompt functionality remains unchanged.
+- Final prompt is correctly passed to the LLM.
+
+Do not duplicate examples or modify unrelated functionality. Run all relevant unit tests and report results.
+````
+
+### 4. Verify
+
+Ask the **same question** again. ✅ Numbers now render in green:
+
+```
+what was the revenue from Tidewater Medical Group KK
+```
+Output should be below.
