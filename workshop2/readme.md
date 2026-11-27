@@ -72,27 +72,58 @@ Open <http://localhost:3000>.
 
 Make the app handle both **keyword** and **semantic** search.
 
+> 💡 **Why this matters:** the knowledge base is searched by vector (semantic) similarity only. Embeddings capture *meaning*, not exact tokens, so look-alike codes such as `OPP-0663` and `OPP-0580` end up almost identical as vectors. A note that mentions `OPP-0663` exists, but vector search can't find it. Keyword search (BM25) matches the exact term.
+
 ### 1. Reproduce the gap
 
 In the chat window at `localhost:3000`, ask:
 
 ```
-Which customers are likely to leave us because they are unhappy with our product?
+What does the knowledge base say about OPP-0663?
 ```
 
-Expected (broken) answer: *"There are currently no customers classified as "At Risk" or "Critical,"…"*
+Expected (broken) answer: *"The search did not return any specific information."*
+
+The note does exist: *Deal Desk Notes - Dunmore Wireless Group*. Vector search returned five passages about **other** deals (Verdant Stores, Oakhaven Software, …). The system prompt's Tool Rules then correctly refuse to present those as an answer.
 
 ### 2. Fix it with Claude Code
 
 In the terminal where Claude Code is open, paste:
 
 ```
-Implement hybrid retrieval in Cosmos DB by combining vector search (semantic similarity) with keyword search (exact terms), using BM25 + Vector.
+Implement hybrid retrieval in Cosmos DB by combining vector search (semantic similarity) with keyword search (exact terms), using BM25 + Vector fused with weighted RRF (vector 3 : keyword 1). Add a full-text policy and full-text index on /text to my existing knowledge-base container. If the query contains an exact identifier such as OPP-0663, return the chunks that contain that exact identifier first.
 ```
 
-### 3. Verify
+> 💡 **Why the two extra rules?**
+> - **Weighted RRF (3:1):** with equal weights, common question words like "buyer" and "says" outvote the semantic match, so meaning-based questions get *worse* (see check 2 below).
+> - **Exact identifier first:** with a lone code as the query, RRF still ranks chunks that *don't* contain the code above the one that does, so the keyword gap would remain.
 
-Ask the **same question** from step 1 again. ✅ You should now get at-risk customers back.
+### 3. Verify both directions
+
+Hybrid search has to keep **both** strengths: keyword matching for exact terms, and semantic matching for meaning.
+
+**Check 1: keyword (the gap is fixed).** Ask the step 1 question again:
+
+```
+What does the knowledge base say about OPP-0663?
+```
+
+✅ Expected: the answer cites *Deal Desk Notes - Dunmore Wireless Group*. A **42%** discount was requested to match Vantara; it needs a CRO exception (above 30%), and the request is still pending with no CRO approval recorded.
+
+**Check 2: semantic (nothing broke).** Ask:
+
+```
+What do we do when a buyer says we are too expensive?
+```
+
+✅ Expected: the answer cites *Pricing Objection Handling* and advises re-anchoring on total cost of ownership. No document contains the words "too expensive", so only semantic search finds this. It works before the fix and must still work after it.
+
+| Question | Keyword only | Semantic only | Hybrid |
+|---|---|---|---|
+| `OPP-0663` | ✅ | ❌ | ✅ |
+| *buyer says we are too expensive* | ❌ | ✅ | ✅ |
+
+Want another keyword example? Try `What does the knowledge base say about OPP-0499?` (blocker: legal redlines on the DPA liability cap).
 
 > 🧹 Done? Run `/clear` in the Claude prompt.
 
@@ -111,19 +142,33 @@ In the chat window, ask either:
 
 The agent answers from general knowledge, even though the data isn't in the RAG.
 
-### 2. Fix it with Claude Code
+### 2. To Fix it
 
-Paste into Claude Code:
+Paste the below prompt under /lib/agent/prompt.ts above *## Style* 
 
 ```
-Retrieve before citing any policy or playbook. If nothing relevant is found, say "No playbook guidance found" instead of using general knowledge as if it were company policy. Add this to the system prompt under Tool Rules.
+## Tool Rules
+- Always call search_knowledge_base before stating any policy, playbook, SLA, refund, pricing or process rule. Never answer these from general knowledge.
+- The knowledge base ALWAYS returns its closest passages, even when none are about the question. Count a passage as an answer ONLY if it explicitly covers the exact thing asked (e.g. it mentions refunds for a refund question, or a P1 / priority-1 support SLA for a P1 SLA question). Passages on neighbouring topics (billing, invoicing, payment terms, discounts, lead-response SLAs) are NOT an answer. Never present them as a substitute or as "related information".
+- If no passage explicitly covers it, reply with exactly this sentence and nothing else:
+  The search did not return any specific information
+- In that case: no headings, bullets, related findings, citations, next steps or follow-up offers. This rule overrides the Citations and Style sections.
+- If one message asks several questions, apply the rule to each one separately.
+- Examples:
+  User: "What's standard industry refund policy?" -> Assistant: "The search did not return any specific information"
+  User: "Per policy, what's P1 SLA?" -> Assistant: "The search did not return any specific information"
+
 ```
 
 ### 3. Verify
 
-Re-ask the two questions. ✅ Expected: `No playbook guidance found`.
+Ask the below question. 
 
-> 🧹 Done? Run `/clear` in the Claude prompt.
+```
+What's standard industry refund policy? and Per policy, what's P1 SLA?
+```
+
+✅ Expected: `The search did not return any specific information`.
 
 ---
 
