@@ -4,15 +4,7 @@
 
 ---
 
-## 🧹 Clear Context
 
-In the Claude prompt, enter this command to clear the context:
-
-```
-/clear
-```
-
----
 
 ## 📦 Install
 
@@ -49,6 +41,28 @@ npm run dev
 Navigate to the app in browser: <http://localhost:3000>
 
 ---
+
+## 🧹 Clear Context
+
+In the Claude prompt, enter this command to clear the context:
+
+```
+/clear
+```
+
+---
+
+## Hybrid Retrievl - Make your app works on both keyword and symentic search compatible
+
+In the localhost:3000 opened chat window, enter the below question:
+
+`Show notes for CUST-10482`
+
+You will get "No Data" message
+
+Now navigate to terminal which as claude code opened, paste the following prompt and press enter 
+
+` Implement hybrid retrieval in Cosmos DB by combining vector search (semantic similarity) with keyword search (exact terms).`
 
 ## 📋 Overview
 

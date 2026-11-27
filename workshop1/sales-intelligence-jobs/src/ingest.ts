@@ -49,6 +49,7 @@ export async function runIngestion(cfg: Config, log: Logger, opts: { force?: boo
 
     const blobs = await source.list();
     s.blobs = blobs.length;
+    if (!blobs.length) log.warn("NO BLOBS FOUND: kb container empty or wrong container/prefix; run copyKb first", { container: cfg.blob.container, prefix: cfg.blob.prefix });
     const manifests = await store.listManifests();
     const byPath = new Map(manifests.map((m) => [m.blob_path, m]));
     log.info("ingestion started", { blobs: blobs.length, knownDocs: manifests.length, force: !!opts.force });

@@ -12,8 +12,10 @@ async function main() {
   const dst = blobService(cfg).getContainerClient(cfg.blob.container);
   await dst.createIfNotExists();
   const blobs = await src.list();
+  console.log(`Copying ${blobs.length} blobs: ${cfg.blob.sourceContainer} -> ${cfg.blob.container}`);
   let n = 0;
   for (const b of blobs) {
+    console.log(`[${n + 1}/${blobs.length}] ${b.name}`);
     const data = await src.container.getBlobClient(b.name).downloadToBuffer();
     await dst.getBlockBlobClient(b.name).uploadData(data, { blobHTTPHeaders: { blobContentType: "text/markdown" } });
     n++;

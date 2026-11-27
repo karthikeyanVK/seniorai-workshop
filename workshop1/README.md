@@ -34,7 +34,7 @@ npm run ingest:local
 
 ---
 
-## ▶️ Start the Pipeline
+## ▶️ Start the Pipeline, so Cosmos db has chunked RAG for better search.
 
 Once the files are copied, run in the same terminal:
 

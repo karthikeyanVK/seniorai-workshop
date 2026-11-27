@@ -73,5 +73,12 @@ export function loadConfig(): Config {
   if (!cfg.openai.endpoint) throw new Error("API_BASE (Azure OpenAI endpoint) required");
   if (!cfg.cosmos.connectionString && !cfg.cosmos.endpoint) throw new Error("COSMOS_CONNECTION_STRING or COSMOS_ENDPOINT required");
   if (!blobConn && !cfg.blob.accountUrl) throw new Error("AZURE_STORAGE_CONNECTION_STRING or AZURE_STORAGE_ACCOUNT_URL required");
+  // Not fatal: empty key/conn string falls back to managed identity (DefaultAzureCredential). Surface it so misconfig is visible.
+  const fallbacks = [
+    !cfg.openai.apiKey && "API_KEY empty -> AAD auth for OpenAI",
+    !cfg.cosmos.connectionString && !cfg.cosmos.key && "COSMOS_CONNECTION_STRING/COSMOS_KEY empty -> AAD auth for Cosmos",
+    !blobConn && "AZURE_STORAGE_CONNECTION_STRING empty -> AAD auth for Blob",
+  ].filter(Boolean);
+  if (fallbacks.length) console.warn(`[config] ${fallbacks.join("; ")}`);
   return cfg;
 }
