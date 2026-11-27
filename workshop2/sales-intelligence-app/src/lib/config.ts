@@ -34,7 +34,7 @@ let cached: Config | undefined;
 
 export function loadConfig(): Config {
   if (cached) return cached;
-  const audience = str("AUDIENCE_NAME");
+  const audience = str("AUDIENCE_NAME").toLowerCase();
   const tables = str("SQL_ALLOWED_TABLES").split(",").map((t) => t.trim().toLowerCase()).filter(Boolean);
   cached = {
     audience,

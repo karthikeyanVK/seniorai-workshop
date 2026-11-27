@@ -19,7 +19,7 @@ export interface Config {
 }
 
 export function requireAudience(): string {
-  const audience = str("AUDIENCE_NAME");
+  const audience = str("AUDIENCE_NAME").toLowerCase();
   if (!/^[a-z0-9-]{1,12}$/.test(audience)) throw new Error("AUDIENCE_NAME required: lowercase alphanumeric/hyphen, max 12 chars");
   return audience;
 }

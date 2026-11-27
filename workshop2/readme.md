@@ -1,14 +1,30 @@
-# 🤖 Workshop 2
+# 🤖 Workshop 2 — Sales Intelligence Agent
 
-> Set up your agentic application using a RAG and Sales Database, and set up the job pipeline that powers data ingestion, which is critical for your
+> Set up an agentic app on a RAG + Sales database, plus the job pipeline that powers data ingestion.
+
+## 📋 Overview
+
+| Field | Details |
+|-------|---------|
+| Topic | Agentic app with RAG + Cosmos DB |
+| Goals | Run the app, add hybrid retrieval, harden the system prompt |
+| Prerequisites | Node.js, npm, VS Code, Claude Code, your assigned number |
+| Status | TBD |
+
+## 🗺️ Steps
+
+1. [Install](#-install)
+2. [Configure environment](#-configure-environment)
+3. [Run](#️-run)
+4. [Hybrid retrieval](#-hybrid-retrieval)
+5. [Clear context](#-clear-context)
+6. [Prompt engineering](#-prompt-engineering)
 
 ---
 
-
-
 ## 📦 Install
 
-Navigate to the `workshop2` folder, then `sales-intelligence-app`, and run in a new terminal:
+In a new terminal, go to `workshop2/sales-intelligence-app` and run:
 
 ```bash
 npm install
@@ -18,11 +34,13 @@ npm install
 
 ## 🔑 Configure Environment
 
-1. Rename `.env.example` to `.env`.
-2. Copy the content from this URL - https://docs.google.com/document/d/1n8jc7n50C1VxDVNuezUE2nOtSilXtP-j7D-vPMpMs20/edit?tab=t.0
-3. Paste the content into the `.env` file.
-4. Set `AUDIENCE_NAME` to your name + the number assigned to you, e.g. `yourname3`.
-5. Update `COSMOS_ENDPOINT` with:
+1. Rename `.env.example` → `.env`.
+2. Copy the content from the [workshop env doc](https://docs.google.com/document/d/1n8jc7n50C1VxDVNuezUE2nOtSilXtP-j7D-vPMpMs20/edit?tab=t.0) into `.env`.
+3. Set `AUDIENCE_NAME` to your name + assigned number, e.g. `yourname3`.
+
+   > 💡 Case doesn't matter. The code lowercases it. Max 12 chars, letters/digits/hyphen only.
+
+4. Set `COSMOS_ENDPOINT`:
 
    ```
    https://salesintelligence-aiworkshop-<YOURNUMBERASSIGNED>.documents.azure.com:443/
@@ -32,19 +50,47 @@ npm install
 
 ## ▶️ Run
 
-Once the app is created, run it in a new command terminal in VS Code:
+In a new VS Code terminal:
 
 ```bash
 npm run dev
 ```
 
-Navigate to the app in browser: <http://localhost:3000>
+Open <http://localhost:3000>.
+
+---
+
+## 🔍 Hybrid Retrieval
+
+Make the app handle both **keyword** and **semantic** search.
+
+### 1. Reproduce the gap
+
+In the chat window at `localhost:3000`, ask:
+
+```
+Which customers are likely to leave us because they are unhappy with our product?
+```
+
+Expected (broken) answer: *"There are currently no customers classified as "At Risk" or "Critical,"…"*
+
+### 2. Fix it with Claude Code
+
+In the terminal where Claude Code is open, paste:
+
+```
+Implement hybrid retrieval in Cosmos DB by combining vector search (semantic similarity) with keyword search (exact terms), using BM25 + Vector.
+```
+
+### 3. Verify
+
+Ask the **same question** from step 1 again. ✅ You should now get at-risk customers back.
 
 ---
 
 ## 🧹 Clear Context
 
-In the Claude prompt, enter this command to clear the context:
+In the Claude prompt:
 
 ```
 /clear
@@ -52,51 +98,27 @@ In the Claude prompt, enter this command to clear the context:
 
 ---
 
-## Hybrid Retrievl - Make your app works on both keyword and symentic search compatible
+## 🎯 Prompt Engineering
 
-In the localhost:3000 opened chat window, enter the below question:
+Stop the agent from passing off general knowledge as company policy.
 
-`Which customers are likely to leave us because they are unhappy with our product?`
+### 1. Reproduce the gap
 
-You will get "There are currently no customers classified as "At Risk" or "Critical," message
+In the chat window, ask either:
 
-Now navigate to terminal which as claude code opened, paste the following prompt and press enter 
+- `What's standard industry refund policy?`
+- `Per policy, what's P1 SLA?`
 
-` Implement hybrid retrieval in Cosmos DB by combining vector search (semantic similarity) with keyword search (exact terms). using BM25 + Vector`
+The agent answers from general knowledge, even though the data isn't in the RAG.
 
-After implementation using claude try the same question in the agentic chat window:
+### 2. Fix it with Claude Code
 
-` Implement hybrid retrieval in Cosmos DB by combining vector search (semantic similarity) with keyword search (exact terms). using BM25 + Vector`
-
-#### Check the answer
-
-## 🧹 Clear Context
-
-In the Claude prompt, enter this command to clear the context:
+Paste into Claude Code:
 
 ```
-/clear
+Retrieve before citing any policy or playbook. If nothing relevant is found, say "No playbook guidance found" instead of using general knowledge as if it were company policy. Add this to the system prompt under Tool Rules.
 ```
 
----
+### 3. Verify
 
-## Prompt Engineering - Instructions
-
-In the agentic chat app, try this following text to lead the query even when the data is not in the RAG
-
-"What's standard industry refund policy?" / "Per policy, what's P1 SLA?
-
-You will get out some details. 
-
-Now ask the following to add system prompt run the below promopt in claude code. 
-
-Retrieve before citing any policy or playbook. If nothing relevant is found, say "No playbook guidance found" instead of   using general knowledge as if it were company policy - Add this to system prompt under Tool Rules
-
-## 📋 Overview
-
-| Field | Details |
-|-------|---------|
-| Topic | TBD |
-| Goals | TBD |
-| Prerequisites | TBD |
-| Status | TBD |
+Re-ask the two questions. ✅ Expected: `No playbook guidance found`.

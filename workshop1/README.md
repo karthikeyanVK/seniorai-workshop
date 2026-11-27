@@ -1,30 +1,55 @@
-# 📖 Workshop 1 — Everything About RAG and Data Ingestion
+# 📖 Workshop 1 — RAG & Data Ingestion
 
-> Get your data ready for your RAG. This workshop sets up the job pipeline that powers data ingestion, which is critical for the workshops ahead.
+> Get your data ready for your RAG. Sets up the job pipeline that powers data ingestion, which every later workshop depends on.
+
+## 📋 Overview
+
+| Field | Details |
+|-------|---------|
+| Topic | RAG + data ingestion pipeline |
+| Goals | Configure credentials, load KB files into Cosmos DB, start the chunking pipeline |
+| Prerequisites | Node.js, npm, Azure Functions Core Tools (`func`), your assigned group number |
+| Status | TBD |
 
 **You will learn:** RAG · Chunking methods · Hybrid Retrieval · System Prompt · Context Engineering · Reranking · Grounding · Hallucination Reduction
+
+## 🗺️ Steps
+
+1. [Configure credentials](#-configure-credentials)
+2. [Upload KB files](#-upload-kb-files-to-cosmos-db)
+3. [Start the pipeline](#️-start-the-pipeline)
+4. [Next](#️-next)
 
 ---
 
 ## 🔑 Configure Credentials
 
-1. Rename `local.settings.example.json` to `local.settings.json` of workshop1\sales-intelligence-jobs\local.settings.example.json.
-2. Copy the credentials from the [workshop credentials doc](https://docs.google.com/document/d/1n8jc7n50C1VxDVNuezUE2nOtSilXtP-j7D-vPMpMs20/edit?usp=sharing).
-3. Paste the copied credentials into `local.settings.json`.
-4. Set `AUDIENCE_NAME` to your name + group number assigned to you, e.g. `yourname3`.
-5. Get the following details `COSMOS_ENDPOINT` and  `COSMOS_KEY`  based on your group from  [workshop credentials doc](https://docs.google.com/document/d/1n8jc7n50C1VxDVNuezUE2nOtSilXtP-j7D-vPMpMs20/edit?usp=sharing).:
+In `workshop1/sales-intelligence-jobs`:
+
+1. Rename `local.settings.example.json` → `local.settings.json`.
+2. Open the [workshop credentials doc](https://docs.google.com/document/d/1n8jc7n50C1VxDVNuezUE2nOtSilXtP-j7D-vPMpMs20/edit?usp=sharing) and copy the values for **your group**:
+   - `API_KEY`
+   - `AzureWebJobsStorage`
+   - `SQL_DB_SALESINTELLIGENCE`
+   - `COSMOS_KEY`
+3. Paste them into `local.settings.json`.
+4. Set `AUDIENCE_NAME` to your name + group number, e.g. `yourname3`.
+
+   > 💡 Case doesn't matter. The code lowercases it. Max 12 chars, letters/digits/hyphen only.
+
+5. Set `COSMOS_ENDPOINT`:
 
    ```
    https://salesintelligence-aiworkshop-<YOURNUMBERASSIGNED>.documents.azure.com:443/
    ```
 
-> **Check:** `AUDIENCE_NAME` is set and `COSMOS_ENDPOINT` is updated.
+> ✅ **Check:** `AUDIENCE_NAME` is set and `COSMOS_ENDPOINT` is updated.
 
 ---
 
 ## 📥 Upload KB Files to Cosmos DB
 
-Navigate to `workshop1/sales-intelligence-jobs` in terminal. This command copies the files to `SALES-KB-<AUDIENCE_NAME>`:
+Copies the KB files to `SALES-KB-<AUDIENCE_NAME>`:
 
 ```bash
 cd workshop1/sales-intelligence-jobs
@@ -34,9 +59,9 @@ npm run ingest:local
 
 ---
 
-## ▶️ Start the Pipeline, so Cosmos db has chunked RAG for better search.
+## ▶️ Start the Pipeline
 
-Once the files are copied, run in the same terminal:
+Once the files are copied, run in the same terminal. This chunks the KB so Cosmos DB has RAG-ready data for better search:
 
 ```bash
 func start
@@ -46,4 +71,4 @@ func start
 
 ## ➡️ Next
 
-Navigate to [Workshop 2](../workshop2/readme.md).
+Go to [Workshop 2](../workshop2/readme.md).
