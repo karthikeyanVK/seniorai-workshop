@@ -225,26 +225,26 @@ Current output, numbers not highlighted:
 2. Create a file named `few-shot-examples.md` with this content:
 
 ````markdown
+Format key numbers in **bold** markdown. Never use HTML tags. Currency is not recorded, so no currency symbol.
+
 ## Example 1
 Input: Total revenue is 150000.
 
 Output:
-Total revenue is
-<span style="color:green">$150,000</span>.
+Total revenue is **150,000**.
 
 ## Example 2
 Input: Profit increased by 25%.
 
 Output:
-Profit increased by
-<span style="color:green">25%</span>.
+Profit increased by **25%**.
 
 ## Example 3
 Input: Revenue is 250000 and expenses are 75000.
 
 Output:
-Revenue is <span style="color:green">$250,000</span>
-and expenses are <span style="color:green">$75,000</span>.
+Revenue is **250,000** and expenses are **75,000**.
+
 ````
 
 ### 3. Fix it with Claude Code
@@ -252,7 +252,7 @@ and expenses are <span style="color:green">$75,000</span>.
 Paste into Claude Code:
 
 ````
-Inspect the existing prompt architecture, including `prompt.ts` and `run.ts`. The 'few-shot-examples.md' file already exists. Identify the final system prompt construction and load the existing Markdown file into it at runtime. Ensure examples are included before sending the prompt to the LLM. Reuse existing architecture and variable names.
+Inspect the existing prompt architecture, including `prompt.ts` and `run.ts`. The 'few-shot-examples.md' file already exists. Identify the final system prompt construction and load the existing Markdown file into it at runtime. Ensure examples are included before sending the prompt to the LLM. Reuse existing architecture and variable names. make sure you fix those bold that in markdown so it will show proper color and bold based on markdown
 
 Add unit tests to verify:
 - Few-shot file loads correctly.
@@ -262,6 +262,7 @@ Add unit tests to verify:
 - Final prompt is correctly passed to the LLM.
 
 Do not duplicate examples or modify unrelated functionality. Run all relevant unit tests and report results.
+
 ````
 
 ### 4. Verify

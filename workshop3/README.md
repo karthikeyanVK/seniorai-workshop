@@ -1,6 +1,8 @@
-# Workshop 3
+# Workshop 3 - Agentic AI Design
 
-Part of **Become a Senior AI Engineer** — go from calling an LLM to owning the production AI stack.
+This workhop will teach you on how you can use agentic architecture to have proper panning and reasoning in place with multi agents and human in the loop
+
+
 
 | Field | Details |
 |-------|---------|
