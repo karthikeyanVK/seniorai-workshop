@@ -34,17 +34,22 @@ npm install
 
 ## 🔑 Configure Environment
 
-1. Rename `.env.example` → `.env`.
-2. Copy the content from the [workshop env doc](https://docs.google.com/document/d/1n8jc7n50C1VxDVNuezUE2nOtSilXtP-j7D-vPMpMs20/edit?tab=t.0) into `.env`.
-3. Set `AUDIENCE_NAME` to your name + assigned number, e.g. `yourname3`.
+1. Rename `.env.example` to `.env`.
+2. Copy the values for these keys from the [shared doc](https://docs.google.com/document/d/1Z6GpFdtjK4mnuXADWi8en0MYPlHV5fG0mr_tdt8tNSc/edit?usp=sharing):
 
-   > 💡 Case doesn't matter. The code lowercases it. Max 12 chars, letters/digits/hyphen only.
+   | Key |
+   |-----|
+   | `API_KEY` |
+   | `AzureWebJobsStorage` |
+   | `SQL_DB_SALESINTELLIGENCE` |
+   | `COSMOS_ENDPOINT` |
+   | `COSMOS_KEY` |
+   | `COSMOS_INFERENCE_ENDPOINT` |
+   | `COSMOS_INFERENCE_KEY` |
 
-4. Set `COSMOS_ENDPOINT`:
+3. Set `AUDIENCE_NAME` to your name + your assigned number, e.g. `yourname3`.
 
-   ```
-   https://salesintelligence-aiworkshop-<YOURNUMBERASSIGNED>.documents.azure.com:443/
-   ```
+> ⚠️ Use the **same** value as in Workshop 1. Don't change it.
 
 ---
 
