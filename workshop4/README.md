@@ -2,13 +2,6 @@
 
 Evaluate LLM + RAG quality, then add observability and monitoring so the agent is production-ready.
 
-| Field | Details |
-|-------|---------|
-| Topic | LLM/RAG evaluation, observability, monitoring |
-| Goals | TBD |
-| Prerequisites | TBD |
-| Status | TBD |
-
 ---
 
 ## Part 1 — Evaluation (LLM & RAG)
@@ -55,15 +48,16 @@ Output:
 
 ![Rerank evaluation output](image-2.png)
 
-### 4. View traces in the dashboard
+5. Create page for showing the build eval report, run the below prompt in Claude Code
+
+`Create an Evaluation Reports page in the existing app using reports generated under `eval/rerank/reports/`. Automatically discover and display report folders, metrics, test results, comparisons, timestamps and detailed results. Include summary cards, charts, filters and report details. Reuse existing UI components and styling. Ensure newly generated reports appear automatically without manual configuration.`
+
+### 4. View details in the Evaluation page by clicking the evaluation link 
+
+![alt text](image-3.png)
 
 ```bash
-npm run dev
-```
 
-Open the app to see LLM/RAG traces in the dashboard.
-
----
 
 ## Part 2 — Observability
 
