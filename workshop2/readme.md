@@ -139,13 +139,16 @@ Stop the agent from passing off general knowledge as company policy.
 
 In the chat window, ask either:
 
-```What's standard industry refund policy?` `Per policy, what's P1 SLA? ```
+```
+What's standard industry refund policy?
+Per policy, what's P1 SLA?
+```
 
 The agent answers from general knowledge, even though the data isn't in the RAG.
 
-### 2. To Fix it
+### 2. Fix it
 
-Paste the below prompt under /lib/agent/prompt.ts above *## Style*
+Paste the below prompt in `/lib/agent/prompt.ts`, above `## Style`:
 
 ```
 ## Tool Rules
@@ -163,9 +166,7 @@ Paste the below prompt under /lib/agent/prompt.ts above *## Style*
 
 ### 3. Verify
 
-Ask the below question.
-
-
+Ask the below question:
 
 ```
 What's standard industry refund policy? and Per policy, what's P1 SLA?
@@ -173,7 +174,8 @@ What's standard industry refund policy? and Per policy, what's P1 SLA?
 
  Expected: `The search did not return any specific information`.
 
- `Stop the running localhost if you get any error and start again with 'npm run dev'`
+> If you get any error, stop the running localhost and start again with `npm run dev`.
+
 ---
 
 ## Cohere Rerank
@@ -301,7 +303,7 @@ Revenue is **250,000** and expenses are **75,000**.
 Paste into Claude Code:
 
 ````
-Inspect the existing prompt architecture, including `prompt.ts` and `run.ts`. The 'few-shot-examples.md' file already exists. Identify the final system prompt construction and load the existing Markdown file into it at runtime. Ensure examples are included before sending the prompt to the LLM. Reuse existing architecture and variable names. make sure you fix those bold that in markdown so it will show proper color and bold based on markdown
+Inspect the existing prompt architecture, including `prompt.ts` and `run.ts`. The `few-shot-examples.md` file already exists. Identify the final system prompt construction and load the existing Markdown file into it at runtime. Ensure examples are included before sending the prompt to the LLM. Reuse existing architecture and variable names. Make sure the bold markdown renders with proper color and bold styling.
 
 Add unit tests to verify:
 - Few-shot file loads correctly.
@@ -321,8 +323,8 @@ Ask the **same question** again. Numbers now render in green:
 ```
 what was the revenue from Tidewater Medical Group KK
 ```
-Output should be below.
+Output should look like:
 
-![alt text](image-3.png)
+![Numbers rendered in green](image-3.png)
 
 Go to [Workshop 3](../workshop3/README.md).

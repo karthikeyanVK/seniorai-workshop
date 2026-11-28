@@ -48,16 +48,21 @@ Output:
 
 ![Rerank evaluation output](image-2.png)
 
-5. Create page for showing the build eval report, run the below prompt in Claude Code
+### 4. Create the evaluation reports page
 
-`Create an Evaluation Reports page in the existing app using reports generated under `eval/rerank/reports/`. Automatically discover and display report folders, metrics, test results, comparisons, timestamps and detailed results. Include summary cards, charts, filters and report details. Reuse existing UI components and styling. Ensure newly generated reports appear automatically without manual configuration.`
+Paste into Claude Code:
 
-### 4. View details in the Evaluation page by clicking the evaluation link 
+```text
+Create an Evaluation Reports page in the existing app using reports generated under `eval/rerank/reports/`. Automatically discover and display report folders, metrics, test results, comparisons, timestamps and detailed results. Include summary cards, charts, filters and report details. Reuse existing UI components and styling. Ensure newly generated reports appear automatically without manual configuration.
+```
 
-![alt text](image-3.png)
+### 5. View details in the Evaluation page
 
-```bash
+Click the evaluation link to open the report details:
 
+![Evaluation report details](image-3.png)
+
+---
 
 ## Part 2 — Observability
 

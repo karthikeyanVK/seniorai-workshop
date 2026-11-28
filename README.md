@@ -10,7 +10,7 @@ Check all your prerequisites, then head to **Workshop 1**.
 
 | Tool | Verify | Expected |
 |------|--------|----------|
-| **Node.js & npm** | `node -v` and `npm -v` | Version number printed - atleast 20.X |
+| **Node.js & npm** | `node -v` and `npm -v` | Version number printed - at least 20.x |
 | **Git** | `git --version` | Version number printed |
 
 > **Note:** "command not found" / "not recognized" means not installed. Install first.
