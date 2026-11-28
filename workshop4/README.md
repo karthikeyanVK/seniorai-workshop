@@ -1,11 +1,24 @@
-# Workshop 4 - EVAL, Observability and Monitoring
+# Workshop 4 — Eval, Observability & Monitoring
 
-This module eveluation for LLM and agent , observability and monitoring to use it in production.
+Evaluate LLM + RAG quality, then add observability and monitoring so the agent is production-ready.
 
-Tidewater Medical Group KK has a $150,000 opportunity, 80% closing probability and a target closing date this month. Calculate expected revenue. - LLM Evaluation
-What is our discount approval policy for enterprise customers? - RAG Evaluation
+| Field | Details |
+|-------|---------|
+| Topic | LLM/RAG evaluation, observability, monitoring |
+| Goals | TBD |
+| Prerequisites | TBD |
+| Status | TBD |
 
-Prompt - 'Implement an evaluation framework for the existing Sales Intelligence Agent covering LLM and RAG evaluation.
+---
+
+## Part 1 — Evaluation (LLM & RAG)
+
+### 1. Generate the eval framework
+
+Give the agent this prompt to build evals for the Sales Intelligence Agent:
+
+```text
+Implement an evaluation framework for the existing Sales Intelligence Agent covering LLM and RAG evaluation.
 
 LLM Evaluation:
 - Correctness, relevance, groundedness, consistency and format adherence.
@@ -17,17 +30,49 @@ RAG Evaluation:
 
 Create a test dataset based on existing sales KB and SQL data. Run automated evaluations and generate a consolidated JSON/CSV report with individual scores and overall metrics.
 
-Reuse existing architecture and connections. Avoid modifying agent functionality. give me npm to run the eval and test and it should have better details about the rag and llm
+Reuse existing architecture and connections. Avoid modifying agent functionality. Give me npm scripts to run the eval and tests, and it should have better details about the RAG and LLM.
+```
 
-'
-run 'npm test eval:local'
-output will be 
+### 2. Build the dataset
 
-Image tag
+In the `sales-intelligence-app` folder:
 
-# Observability
+```bash
+npm run build:rerank-dataset
+```
 
-`Enhance the existing Sales Intelligence Agent with observability, distributed tracing and monitoring.
+Output:
+
+![Rerank dataset build output](image.png)
+
+### 3. Run RAG retrieval evaluation
+
+```bash
+npm run test:rerank
+```
+
+Output:
+
+![Rerank evaluation output](image-2.png)
+
+### 4. View traces in the dashboard
+
+```bash
+npm run dev
+```
+
+Open the app to see LLM/RAG traces in the dashboard.
+
+---
+
+## Part 2 — Observability
+
+### 1. Generate observability
+
+Give the agent this prompt:
+
+```text
+Enhance the existing Sales Intelligence Agent with observability, distributed tracing and monitoring.
 
 Implement end-to-end tracing across LangGraph nodes, LLM calls, SQL execution, RAG retrieval and agent orchestration.
 
@@ -43,15 +88,13 @@ Add an observability dashboard to the existing UI showing execution traces, late
 
 Use structured logging and OpenTelemetry-compatible tracing. Ensure sensitive data and credentials are not logged.
 
-Reuse existing architecture and infrastructure. Avoid unrelated changes.`
+Reuse existing architecture and infrastructure. Avoid unrelated changes.
+```
 
-Output will be 
+### 2. View the dashboard
 
-Image tag - placeholder
+Navigate to **Observability** in the web app.
 
-| Field | Details |
-|-------|---------|
-| Topic | TBD |
-| Goals | TBD |
-| Prerequisites | TBD |
-| Status | TBD |
+Output:
+
+![Observability dashboard](image-1.png)
